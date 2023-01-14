@@ -4,6 +4,6 @@ public class Spearman extends CloseRangeUnit{
     }
     public Spearman(String name) {
         super(name, 4, 5, new int[]{1,3}, 10, 4);
-        this.name = name;
+        this.setName(name);
     }
 }

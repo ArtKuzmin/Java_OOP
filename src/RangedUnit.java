@@ -1,5 +1,5 @@
 public abstract class RangedUnit extends DefaultHero {
-    int shots;
+    private int shots;
 
     public int getShots() {
         return shots;

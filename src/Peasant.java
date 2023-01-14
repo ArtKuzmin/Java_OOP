@@ -1,5 +1,5 @@
 public class Peasant extends DefaultHero {
-    boolean supply = true;
+    private boolean supply = true;
 //добавил геттер и сеттер для доставки на случай, если в дальшейшем в игре у этих крестьянина можно будет отнимать абилку)
 
     public boolean isSupply() {
@@ -17,7 +17,7 @@ public class Peasant extends DefaultHero {
 
     public Peasant(String name) {
         super(name, 1, 1, new int[]{1}, 1, 3);
-        this.name = name;
+        this.setName(name);
 
     }
 

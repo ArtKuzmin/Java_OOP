@@ -4,6 +4,6 @@ public class Monk extends SorceryUnit {
     }
     public Monk(String name) {
         super(name, 12, 7, new int[]{-4}, 30, 5);
-        this.name = name;
+        this.setName(name);
     }
 }

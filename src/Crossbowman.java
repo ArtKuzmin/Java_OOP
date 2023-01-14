@@ -4,6 +4,6 @@ public class Crossbowman extends RangedUnit {
     }
     public Crossbowman(String name) {
         super(name, 6, 3, new int[]{2,3}, 10, 4, 16);
-        this.name = name;
+        this.setName(name);
     }
 }

@@ -4,6 +4,6 @@ public class Sniper extends RangedUnit{
     }
     public Sniper(String name) {
         super(name, 12, 10, new int[]{8,10}, 15, 9, 32);
-        this.name = name;
+        this.setName(name);
     }
 }

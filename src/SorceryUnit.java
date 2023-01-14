@@ -1,5 +1,5 @@
 public abstract class SorceryUnit extends DefaultHero {
-    boolean mana = true;
+    private boolean mana = true;
 //добавил геттер и сеттер для маны на случай, если в дальшейшем в игре у этих классов можно будет отнимать абилку магии)
     public boolean isMana() {
         return mana;

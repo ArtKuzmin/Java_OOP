@@ -1,12 +1,12 @@
 import java.util.Arrays;
 
 public abstract class DefaultHero {
-    String name;
-    int attack;
-    int defense;
-    int[] damage;
-    int health;
-    int speed;
+    private String name;
+    private int attack;
+    private int defense;
+    private int[] damage;
+    private int health;
+    private int speed;
 
     public String getName() {
         return name;

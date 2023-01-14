@@ -4,6 +4,6 @@ public class Mage extends SorceryUnit {
     }
     public Mage(String name) {
         super(name, 17, 12, new int[]{-5}, 30, 9);
-        this.name = name;
+        this.setName(name);
     }
 }
