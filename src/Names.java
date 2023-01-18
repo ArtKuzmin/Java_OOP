@@ -11,8 +11,7 @@ public enum Names {
     Philip, Raymond, Reginald, Rhys, Richard, Robert, Roderick, Rodger, Roger, Ronald, Rowland, Rufus, Russell,
     Sebastian, Simon, Stephen, Thomas, Tobias, Travis, Victor, Vincent, Vivian, Wayne, Wilfred, William, Winston;
     public static String randName() {
-        Names[] values = Names.values();
-        int randIndex = new Random().nextInt(values.length);
-        return String.valueOf(values[randIndex]);
+        int randIndex = new Random().nextInt(Names.values().length);
+        return String.valueOf(Names.values()[randIndex]);
     }
 }

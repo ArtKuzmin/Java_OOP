@@ -6,4 +6,5 @@ public class Sniper extends RangedUnit{
         super(name, 12, 10, new int[]{8,10}, 15, 9, 32);
         this.setName(name);
     }
+
 }

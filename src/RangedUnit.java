@@ -1,4 +1,4 @@
-public abstract class RangedUnit extends DefaultHero {
+public abstract class RangedUnit extends DefaultHero implements HealAndInfo {
     private int shots;
 
     public int getShots() {

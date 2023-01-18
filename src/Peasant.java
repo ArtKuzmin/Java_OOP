@@ -25,4 +25,6 @@ public class Peasant extends DefaultHero {
     public String toString() {
         return super.toString() +  ", supply = " + supply;
     }
+
+
 }

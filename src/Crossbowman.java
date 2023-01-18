@@ -6,4 +6,6 @@ public class Crossbowman extends RangedUnit {
         super(name, 6, 3, new int[]{2,3}, 10, 4, 16);
         this.setName(name);
     }
+
+
 }

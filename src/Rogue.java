@@ -7,4 +7,6 @@ public class Rogue extends CloseRangeUnit {
         super(name, 8, 3, new int[]{2,4}, 16, 10);
         this.setName(name);
     }
+
+
 }
