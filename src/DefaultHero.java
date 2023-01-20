@@ -47,16 +47,15 @@ public abstract class DefaultHero implements HealAndInfo {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
 
     public int getHealth() {
         return health;
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        if (health + this.health > maxHealth)
+            this.health = maxHealth;
+        else this.health = health;
     }
 
     public int getSpeed() {
@@ -90,12 +89,12 @@ public abstract class DefaultHero implements HealAndInfo {
 
     @Override
     public String getInfo() {
-        return "Damage taken = " + (getMaxHealth() - getHealth()) +
-                "\nCurrent health = " + getHealth();
+        return getClass() + ", Name = " + name + ", Damage taken = " + (getMaxHealth() - getHealth()) +
+                " сurrent health = " + getHealth();
     }
 
     @Override
-    public void step(ArrayList<DefaultHero> party, int[] heal) {
+    public void step(ArrayList<DefaultHero> party) {
         System.out.println("This unit isn't a healer");
     }
 }

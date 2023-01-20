@@ -5,60 +5,21 @@ import java.util.function.Supplier;
 
 public class Main {
     public static void main(String[] args) {
-//        List<DefaultHero> peasants = createFiveHero(() -> new Peasant(Names.randName()));
-//        peasants.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> snipers = createFiveHero(() -> new Sniper(Names.randName()));
-//        snipers.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> crossbowmen = createFiveHero(() -> new Crossbowman(Names.randName()));
-//        crossbowmen.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> rogues = createFiveHero(() -> new Rogue(Names.randName()));
-//        rogues.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> spearmen = createFiveHero(() -> new Spearman(Names.randName()));
-//        spearmen.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> mages = createFiveHero(() -> new Mage(Names.randName()));
-//        mages.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> monks = createFiveHero(() -> new Monk(Names.randName()));
-//        monks.forEach(System.out::println);
-//        System.out.println("-------------------");
-//
-//        List<DefaultHero> randList = createListOfUnits(50);
-//        String unitClass = "Mage";
-//        List<DefaultHero> classUnits = pickUnitClass(randList, unitClass);
-//        System.out.printf("List of %s from 50 units of random classes: \n", unitClass);
-//        for (DefaultHero a : classUnits) {
-//            System.out.println(a);
-//        }
-
-
         ArrayList<DefaultHero> partyOne = createParty(10, 1);
-        partyOne.forEach(s -> {
-            System.out.println(s);
-            System.out.println(s.getInfo());
-        });
+        partyOne.forEach(s -> System.out.println(s.getInfo()));
         System.out.println("---------");
-        for (int i = 0; i < partyOne.size(); i++) {
-                partyOne.get(i).step(partyOne, partyOne.get(i).getDamage());
-        }
+        partyOne.forEach(s -> s.step(partyOne));
+        System.out.println("---------");
+        partyOne.forEach(s -> System.out.println(s.getInfo()));
 
-//
-//        System.out.println("---------");
-
+        System.out.println("---------");
         ArrayList<DefaultHero> partyTwo = createParty(10, 0);
-//        partyTwo.forEach(System.out::println);
-
-
+        partyTwo.forEach(s -> System.out.println(s.getInfo()));
+        System.out.println("---------");
+        partyTwo.forEach(s -> s.step(partyTwo));
+        System.out.println("---------");
+        partyTwo.forEach(s -> System.out.println(s.getInfo()));
+        System.out.println("---------");
     }
 
     public static ArrayList<DefaultHero> createUnitsOfSameClass(Supplier<? extends DefaultHero> heroSupplier, int partySize) {
