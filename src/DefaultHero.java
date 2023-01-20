@@ -90,7 +90,7 @@ public abstract class DefaultHero implements HealAndInfo {
     @Override
     public String getInfo() {
         return getClass() + ", Name = " + name + ", Damage taken = " + (getMaxHealth() - getHealth()) +
-                " сurrent health = " + getHealth();
+                ", current health = " + getHealth();
     }
 
     @Override

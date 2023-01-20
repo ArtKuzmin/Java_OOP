@@ -9,17 +9,17 @@ public class Main {
         partyOne.forEach(s -> System.out.println(s.getInfo()));
         System.out.println("---------");
         partyOne.forEach(s -> s.step(partyOne));
-        System.out.println("---------");
-        partyOne.forEach(s -> System.out.println(s.getInfo()));
+//        System.out.println("---------");
+//        partyOne.forEach(s -> System.out.println(s.getInfo()));
 
-        System.out.println("---------");
+        System.out.println("------------------------------");
         ArrayList<DefaultHero> partyTwo = createParty(10, 0);
         partyTwo.forEach(s -> System.out.println(s.getInfo()));
         System.out.println("---------");
         partyTwo.forEach(s -> s.step(partyTwo));
-        System.out.println("---------");
-        partyTwo.forEach(s -> System.out.println(s.getInfo()));
-        System.out.println("---------");
+//        System.out.println("---------");
+//        partyTwo.forEach(s -> System.out.println(s.getInfo()));
+//        System.out.println("---------");
     }
 
     public static ArrayList<DefaultHero> createUnitsOfSameClass(Supplier<? extends DefaultHero> heroSupplier, int partySize) {
