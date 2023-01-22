@@ -1,39 +1,35 @@
+import Units.*;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 import java.util.Random;
-import java.util.function.Supplier;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         ArrayList<DefaultHero> partyOne = createParty(10, 1);
+        partyOne.sort(Collections.reverseOrder());
         partyOne.forEach(s -> System.out.println(s.getInfo()));
-        System.out.println("---------");
-        partyOne.forEach(s -> s.step(partyOne));
-//        System.out.println("---------");
-//        partyOne.forEach(s -> System.out.println(s.getInfo()));
-
-        System.out.println("------------------------------");
-        ArrayList<DefaultHero> partyTwo = createParty(10, 0);
-        partyTwo.forEach(s -> System.out.println(s.getInfo()));
-        System.out.println("---------");
-        partyTwo.forEach(s -> s.step(partyTwo));
-//        System.out.println("---------");
-//        partyTwo.forEach(s -> System.out.println(s.getInfo()));
-//        System.out.println("---------");
-    }
-
-    public static ArrayList<DefaultHero> createUnitsOfSameClass(Supplier<? extends DefaultHero> heroSupplier, int partySize) {
-        ArrayList<DefaultHero> arr = new ArrayList<>();
-        for (int i = 0; i < partySize; i++) {
-            arr.add(heroSupplier.get());
+        System.out.println("-------------------");
+        while (true){
+            System.out.println("Press enter for next step, '0' to quit");
+            sc.nextLine();
+            if(sc.nextLine().equals("0"))
+                break;
+            System.out.println("PartyOne's move:");
+            partyOne.forEach(s -> s.step(partyOne));
         }
-        return arr;
     }
 
     public static ArrayList<DefaultHero> createParty(int n, int party) {
         ArrayList<DefaultHero> randList = new ArrayList<>();
         if (party == 1) {
-            for (int i = 0; i < n; i++) {
+            randList.add(new Mage(Names.randName()));
+            randList.add(new Peasant(Names.randName()));
+            randList.add(new Rogue(Names.randName()));
+            randList.add(new Sniper(Names.randName()));
+            for (int i = 0; i < n - 4; i++) {
                 int rand = new Random().nextInt(4);
                 switch (rand) {
                     case (0) -> randList.add(new Mage(Names.randName()));
@@ -43,7 +39,11 @@ public class Main {
                 }
             }
         } else {
-            for (int i = 0; i < n; i++) {
+            randList.add(new Monk(Names.randName()));
+            randList.add(new Peasant(Names.randName()));
+            randList.add(new Spearman(Names.randName()));
+            randList.add(new Crossbowman(Names.randName()));
+            for (int i = 0; i < n - 4; i++) {
                 int rand = new Random().nextInt(4);
                 switch (rand) {
                     case (0) -> randList.add(new Monk(Names.randName()));
@@ -52,14 +52,8 @@ public class Main {
                     case (3) -> randList.add(new Crossbowman(Names.randName()));
                 }
             }
-
         }
         return randList;
     }
-
-    public static List<DefaultHero> pickUnitClass(List<DefaultHero> randList, String classOfUnit) {
-        List<DefaultHero> arr = new ArrayList<>(randList);
-        arr.removeIf(item -> !String.valueOf(item.getClass()).replace("class ", "").equals(classOfUnit));
-        return arr;
-    }
 }
+

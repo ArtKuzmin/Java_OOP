@@ -1,6 +1,8 @@
+package Units;
+
 import java.util.ArrayList;
 
-public interface HealAndInfo {
+public interface Behavior {
     public void step(ArrayList<DefaultHero> party);
 
     String getInfo();
