@@ -5,10 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public abstract class Healers extends DefaultHero implements Behavior {
-    protected boolean mana = true;
+    protected boolean mana;
 
-    public Healers(String name, int attack, int defense, int[] damage, int health, int speed) {
-        super(name, attack, defense, damage, health, speed);
+    public Healers(String name, int attack, int defense, int[] damage, int maxHealth,
+                   int speed, ArrayList<DefaultHero> side, Vector2 position) {
+        super(name, attack, defense, damage, maxHealth, speed, side, position);
+        this.mana = true;
     }
 
     @Override
@@ -16,11 +18,10 @@ public abstract class Healers extends DefaultHero implements Behavior {
         return super.toString() + ", mana = " + mana;
     }
 
-
     @Override
     public void step(ArrayList<DefaultHero> party) {
-        List<DefaultHero> sortedParty = party.stream().sorted(Comparator.comparingInt(x ->
-                (x.health * 100 / x.maxHealth))).toList();
+        List<DefaultHero> sortedParty = party.stream().sorted(Comparator.comparingDouble(x ->
+                 (x.health * 100 / x.maxHealth))).toList();
         if (sortedParty.get(0).health == sortedParty.get(0).maxHealth)
             System.out.println("Nobody needs healing");
         else {
@@ -31,6 +32,10 @@ public abstract class Healers extends DefaultHero implements Behavior {
                     " " + sortedParty.get(0).name + " is cured by " + name + ", health increased by " +
                     Math.abs(damage[0]) + " to " + sortedParty.get(0).health);
         }
+    }
+    @Override
+    public String getInfo() {
+        return String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥ %.1f\t☠%d\t⏭ %d\t\t", attack, defense, health, damage[0], speed);
     }
 }
 

@@ -1,15 +1,16 @@
 package Units;
 
+import java.util.ArrayList;
+
 public class Rogue extends CloseRangeUnit {
 
-    public Rogue(String name, int attack, int defense, int[] damage, int health, int speed) {
-        super(name, attack, defense, damage, health, speed);
+    public Rogue(ArrayList<DefaultHero> side, int x, int y) {
+        super(Names.randName(), 8, 3, new int[]{2, 4}, 16, 10, side, new Vector2(x, y));
     }
-
-    public Rogue(String name) {
-        super(name, 8, 3, new int[]{2,4}, 16, 10);
-        this.name = name;
+    @Override
+    public String getInfo() {
+        return String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥ %.1f\t☠ %d\t⏭%d\t",
+                attack, defense, health, damage[0], speed);
     }
-
 
 }

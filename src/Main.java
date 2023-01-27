@@ -1,59 +1,51 @@
 import Units.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+    public static final int GANG_SIZE = 5;
+    public static ArrayList<DefaultHero> whiteSide;
+    public static ArrayList<DefaultHero> darkSide;
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ArrayList<DefaultHero> partyOne = createParty(10, 1);
-        partyOne.sort(Collections.reverseOrder());
-        partyOne.forEach(s -> System.out.println(s.getInfo()));
-        System.out.println("-------------------");
-        while (true){
-            System.out.println("Press enter for next step, '0' to quit");
-            sc.nextLine();
-            if(sc.nextLine().equals("0"))
-                break;
-            System.out.println("PartyOne's move:");
-            partyOne.forEach(s -> s.step(partyOne));
+        init();
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            ConsoleView.view();
+            whiteSide.forEach(n -> n.step(darkSide));
+            darkSide.forEach(n -> n.step(whiteSide));
+            scanner.nextLine();
         }
     }
 
-    public static ArrayList<DefaultHero> createParty(int n, int party) {
-        ArrayList<DefaultHero> randList = new ArrayList<>();
-        if (party == 1) {
-            randList.add(new Mage(Names.randName()));
-            randList.add(new Peasant(Names.randName()));
-            randList.add(new Rogue(Names.randName()));
-            randList.add(new Sniper(Names.randName()));
-            for (int i = 0; i < n - 4; i++) {
-                int rand = new Random().nextInt(4);
-                switch (rand) {
-                    case (0) -> randList.add(new Mage(Names.randName()));
-                    case (1) -> randList.add(new Peasant(Names.randName()));
-                    case (2) -> randList.add(new Rogue(Names.randName()));
-                    case (3) -> randList.add(new Sniper(Names.randName()));
-                }
-            }
-        } else {
-            randList.add(new Monk(Names.randName()));
-            randList.add(new Peasant(Names.randName()));
-            randList.add(new Spearman(Names.randName()));
-            randList.add(new Crossbowman(Names.randName()));
-            for (int i = 0; i < n - 4; i++) {
-                int rand = new Random().nextInt(4);
-                switch (rand) {
-                    case (0) -> randList.add(new Monk(Names.randName()));
-                    case (1) -> randList.add(new Peasant(Names.randName()));
-                    case (2) -> randList.add(new Spearman(Names.randName()));
-                    case (3) -> randList.add(new Crossbowman(Names.randName()));
-                }
+    private static void init() {
+        whiteSide = new ArrayList<>();
+        darkSide = new ArrayList<>();
+
+        int x = 1;
+        int y = 1;
+        for (int i = 0; i < GANG_SIZE; i++) {
+            switch (new Random().nextInt(4)) {
+                case 0 -> whiteSide.add(new Peasant(whiteSide, x, y++));
+                case 1 -> whiteSide.add(new Rogue(whiteSide, x, y++));
+                case 2 -> whiteSide.add(new Sniper(whiteSide, x, y++));
+                default -> whiteSide.add(new Monk(whiteSide, x, y++));
             }
         }
-        return randList;
+        Collections.reverse(whiteSide);
+
+        x = GANG_SIZE;
+        y = 1;
+        for (int i = 0; i < GANG_SIZE; i++) {
+
+            switch (new Random().nextInt(4)) {
+                case 0 -> darkSide.add(new Peasant(darkSide, x, y++));
+                case 1 -> darkSide.add(new Lancer(darkSide, x, y++));
+                case 2 -> darkSide.add(new Crossbowman(darkSide, x, y++));
+                default -> darkSide.add(new Wizard(darkSide, x, y++));
+            }
+        }
+        Collections.reverse(darkSide);
     }
 }
-

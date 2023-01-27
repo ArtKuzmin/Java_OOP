@@ -4,19 +4,11 @@ import java.util.ArrayList;
 
 public class Peasant extends DefaultHero {
 
-    protected boolean supply = true;
+    protected boolean supply;
 
-    public void setSupply(boolean supply) {
-        this.supply = supply;
-    }
-
-    public Peasant(String name, int attack, int defense, int[] damage, int health, int speed) {
-        super(name, attack, defense, damage, health, speed);
-    }
-
-    public Peasant(String name) {
-        super(name, 1, 1, new int[]{1}, 1, 3);
-        this.name = name;
+    public Peasant(ArrayList<DefaultHero> side, int x, int y) {
+        super(Names.randName(), 1, 1, new int[]{1}, 1, 3, side, new Vector2(x, y));
+        this.supply = true;
     }
 
     @Override

@@ -1,12 +1,9 @@
 package Units;
 
-public class Monk extends Healers {
-    public Monk(String name, int attack, int defense, int[] damage, int health, int speed, boolean mana) {
-        super(name, attack, defense, damage, health, speed);
-    }
+import java.util.ArrayList;
 
-    public Monk(String name) {
-        super(name, 12, 7, new int[]{-4}, 30, 5);
-        this.name = name;
+public class Monk extends Healers {
+    public Monk(ArrayList<DefaultHero> side, int x, int y) {
+        super(Names.randName(), 12, 7, new int[]{-4}, 30, 5, side, new Vector2(x, y));
     }
 }

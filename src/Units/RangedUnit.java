@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public abstract class RangedUnit extends DefaultHero implements Behavior {
     protected int shots;
 
-       public RangedUnit(String name, int attack, int defense, int[] damage, int health, int speed, int shots) {
-        super(name, attack, defense, damage, health, speed);
+    public RangedUnit(String name, int attack, int defense, int[] damage, int maxHealth,
+                      int speed, ArrayList<DefaultHero> side, Vector2 position, int shots) {
+        super(name, attack, defense, damage, maxHealth, speed, side, position);
         this.shots = shots;
     }
 
@@ -32,10 +33,5 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
                 System.out.println(name + " fired! Ammo delivered by peasant");
             } else System.out.println(name + " fired! " + --shots + " shots remains");
         } else System.out.println("No ammo, can't shoot!");
-    }
-    @Override
-    public String getInfo() {
-        return String.valueOf(getClass()).replace("class Units.", "") + ", Name = " + name + ", Damage taken = " + (maxHealth - health) +
-                ", current health = " + health + ", " + shots +" shots remain";
     }
 }
