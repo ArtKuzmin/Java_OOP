@@ -63,15 +63,31 @@ public class ConsoleView {
     private static String getHeroChar(Vector2 position) {
         String str = "| ";
         for (int i = 0; i < Main.GANG_SIZE; i++) {
-            if (Main.darkSide.get(i).getPosition().isEquals(position)) {
-                str = "|" + AnsiColors.ANSI_BLUE + Main.darkSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET + "|"
-                        + " ".repeat(3) + AnsiColors.ANSI_GREEN + Main.whiteSide.get(i).getInfo() + AnsiColors.ANSI_RESET
-                        + " ".repeat(5) + AnsiColors.ANSI_BLUE + Main.darkSide.get(i).getInfo() + AnsiColors.ANSI_RESET;
+            if (Main.whiteSide.get(i).getPosition().isEquals(position)) {
+                if (!Main.whiteSide.get(i).isDead())
+                    str = "|" + AnsiColors.ANSI_GREEN + Main.whiteSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET;
+                else
+                    str = "|" + AnsiColors.ANSI_WHITE + Main.whiteSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET;
             }
 
-            if (Main.whiteSide.get(i).getPosition().isEquals(position)) {
-                str = "|" + AnsiColors.ANSI_GREEN + Main.whiteSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET;
+            if (Main.darkSide.get(i).getPosition().isEquals(position)) {
+                if (!Main.darkSide.get(i).isDead()) {
+                    str = "|" + AnsiColors.ANSI_BLUE + Main.darkSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET + "|"
+                            + " ".repeat(3) + AnsiColors.ANSI_GREEN + Main.whiteSide.get(i).getInfo() + AnsiColors.ANSI_RESET
+                            + " ".repeat(5) + AnsiColors.ANSI_BLUE + Main.darkSide.get(i).getInfo() + AnsiColors.ANSI_RESET;
+                } else {
+                    str = "|" + AnsiColors.ANSI_WHITE + Main.darkSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET + "|"
+                            + " ".repeat(3) + AnsiColors.ANSI_GREEN + Main.whiteSide.get(i).getInfo() + AnsiColors.ANSI_RESET
+                            + " ".repeat(5) + AnsiColors.ANSI_WHITE + Main.darkSide.get(i).getInfo() + AnsiColors.ANSI_RESET;
+                }
             }
+//            if (Main.whiteSide.get(i).getPosition().isEquals(position) && Main.whiteSide.get(i).isDead()) {
+//                str = "|" + AnsiColors.ANSI_BLUE + Main.darkSide.get(i).getName().toUpperCase().charAt(0) + AnsiColors.ANSI_RESET + "|"
+//                        + " ".repeat(3) + AnsiColors.ANSI_WHITE + Main.whiteSide.get(i).getInfo() + AnsiColors.ANSI_RESET
+//                        + " ".repeat(5) + AnsiColors.ANSI_BLUE + Main.darkSide.get(i).getInfo() + AnsiColors.ANSI_RESET;
+//            }
+
+
         }
         return str;
     }

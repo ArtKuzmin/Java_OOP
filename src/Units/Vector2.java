@@ -1,11 +1,7 @@
 package Units;
 
-import java.util.ArrayList;
-import java.util.Deque;
-
 public class Vector2 {
     float x, y;
-
 
     public Vector2(float x, float y) {
         this.x = x;

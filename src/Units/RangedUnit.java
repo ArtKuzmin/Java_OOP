@@ -18,8 +18,8 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
 
     @Override
     public Vector2 findTarget(ArrayList<DefaultHero> party) {
-        float minDistance = 15;
-        float index = 0;
+        float minDistance = (float) (party.size() * 1.5);
+        float index = -1;
         for (int i = 0; i < party.size(); i++) {
             if (getPosition().getDistance(party.get(i)) < minDistance && !party.get(i).isDead) {
                 minDistance = getPosition().getDistance(party.get(i));
@@ -43,28 +43,8 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
         return flag;
     }
 
-    @Override
-    public void step(ArrayList<DefaultHero> party) {
-        if (isDead) return;
-        else {
-            boolean flag = checkForPeasant();
-            Vector2 target = findTarget(party);
-            int targetIndex = (int) target.y;
-            if (shots > 0) {
-                if (party.get(targetIndex).health > calcDamage(target, party.get(targetIndex)))
-                    party.get(targetIndex).health = party.get(targetIndex).health - calcDamage(target, party.get(targetIndex));
-                else {
-                    party.get(targetIndex).health = 0;
-                    party.get(targetIndex).isDead = true;
-                }
-                if (flag) {
-                    System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + (int) calcDamage(target, party.get(targetIndex)) + " damage! Ammo delivered by peasant");
-                } else
-                    System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + (int) calcDamage(target, party.get(targetIndex)) + " damage! " + --shots + " shots remains");
-            } else System.out.println("No ammo, can't shoot!");
-        }
-    }
-
+    //т.к. мы пишем все-таки не игру, то не стал сильно заморачиваться с этим методом. С одной стороны он учиывает и соотношение атаки и защиты персонажей
+    //а так же расстояние между ними, но т.к. разница между макс и мик уроном мала, то и соответственно смысла в этом рассчете немного)
     float calcDamage(Vector2 target, DefaultHero hero) {
         float dealtDamage;
         if (target.x < side.size() * 0.4)
@@ -73,5 +53,30 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
             dealtDamage = (float) (damage[0] + damage[1]) / 2;
         else dealtDamage = damage[0];
         return dealtDamage;
+    }
+
+    @Override
+    public void step(ArrayList<DefaultHero> party) {
+        Vector2 target = findTarget(party);
+        if (isDead) System.out.println("Unit is dead");
+        else if (target.y == -1)
+            System.out.println("Everyone is dead");
+        else {
+            boolean flag = checkForPeasant();
+            int targetIndex = (int) target.y;
+            int hit = (int) calcDamage(target, party.get(targetIndex));
+            if (shots > 0) {
+                if (party.get(targetIndex).health > calcDamage(target, party.get(targetIndex)))
+                    party.get(targetIndex).health = party.get(targetIndex).health - hit;
+                else {
+                    party.get(targetIndex).health = 0;
+                    party.get(targetIndex).isDead = true;
+                }
+                if (flag) {
+                    System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + hit + " damage! Ammo delivered by peasant");
+                } else
+                    System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + hit + " damage! " + --shots + " shots remains");
+            } else System.out.println("No ammo, can't shoot!");
+        }
     }
 }

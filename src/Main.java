@@ -3,7 +3,7 @@ import Units.*;
 import java.util.*;
 
 public class Main {
-    public static final int GANG_SIZE = 10;
+    public static final int GANG_SIZE = 5;
     public static ArrayList<DefaultHero> whiteSide;
     public static ArrayList<DefaultHero> darkSide;
 
@@ -19,6 +19,7 @@ public class Main {
             System.out.println("Dark Side's turn:");
             darkSide.forEach(n -> n.step(whiteSide));
             scanner.nextLine();
+
         }
     }
 
@@ -36,7 +37,6 @@ public class Main {
                 default -> whiteSide.add(new Monk(whiteSide, x, y++));
             }
         }
-//        Collections.reverse(whiteSide);
 
         x = GANG_SIZE;
         y = 1;
@@ -49,6 +49,5 @@ public class Main {
                 default -> darkSide.add(new Wizard(darkSide, x, y++));
             }
         }
-//        Collections.reverse(darkSide);
     }
 }

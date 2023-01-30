@@ -18,7 +18,10 @@ public class Peasant extends DefaultHero {
 
     @Override
     public void step(ArrayList<DefaultHero> party) {
-        this.supply = true;
-        System.out.println("Peasant rested and ready to supply");
+        if (isDead) System.out.println("Unit is dead");
+        else {
+            this.supply = true;
+            System.out.println("Peasant rested and ready to supply");
+        }
     }
 }
