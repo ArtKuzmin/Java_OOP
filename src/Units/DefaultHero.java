@@ -6,17 +6,21 @@ import java.util.Random;
 
 public abstract class DefaultHero implements Behavior, Comparable<DefaultHero> {
     protected String name;
-    protected int attack;
-    protected int defense;
+    protected int attack, defense, maxHealth, speed;
     protected int[] damage;
-    protected int maxHealth;
     protected double health;
-    protected int speed;
     protected ArrayList<DefaultHero> side;
+    boolean isDead;
 
     public Vector2 getPosition() {
         return position;
     }
+
+    @Override
+    public Vector2 findTarget(ArrayList<DefaultHero> party) {
+        return new Vector2(1, 1);
+    }
+
 
     protected Vector2 position;
 
@@ -27,10 +31,11 @@ public abstract class DefaultHero implements Behavior, Comparable<DefaultHero> {
         this.defense = defense;
         this.damage = damage;
         this.maxHealth = maxHealth;
-        this.health = maxHealth - new Random().nextInt(maxHealth);
+        this.health = maxHealth;
         this.speed = speed;
         this.side = side;
         this.position = position;
+        this.isDead = false;
     }
 
     @Override
@@ -50,12 +55,14 @@ public abstract class DefaultHero implements Behavior, Comparable<DefaultHero> {
 
     @Override
     public String getInfo() {
-        return String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥ %.1f\t☠ %d\t⏭ %d\t\t",
-                attack, defense, health, damage[0], speed);
+        return  String.format("%s\t%s\t ⚔ %d\t\uD83D\uDEE1 %d\t♥ %d/%d\t☠ %d\t⏭ %d\t\t",
+                String.valueOf(getClass()).replace("class Units.", ""), name, attack, defense,(int) health, maxHealth, damage[0], speed);
     }
 
     @Override
     public void step(ArrayList<DefaultHero> party) {
+
+
         System.out.println("This unit does nothing so far");
     }
 

@@ -17,10 +17,17 @@ public abstract class Healers extends DefaultHero implements Behavior {
     public String toString() {
         return super.toString() + ", mana = " + mana;
     }
+//    @Override
+//    public int findTarget(ArrayList<DefaultHero> party){
+//        int index = 0;
+//        List<DefaultHero> sortedParty = party.stream().sorted(Comparator.comparingDouble(x ->
+//                (x.health * 100 / x.maxHealth))).toList();
+//        return index;
+//    }
 
     @Override
     public void step(ArrayList<DefaultHero> party) {
-        List<DefaultHero> sortedParty = party.stream().sorted(Comparator.comparingDouble(x ->
+        List<DefaultHero> sortedParty = side.stream().sorted(Comparator.comparingDouble(x ->
                  (x.health * 100 / x.maxHealth))).toList();
         if (sortedParty.get(0).health == sortedParty.get(0).maxHealth)
             System.out.println("Nobody needs healing");
@@ -33,9 +40,9 @@ public abstract class Healers extends DefaultHero implements Behavior {
                     Math.abs(damage[0]) + " to " + sortedParty.get(0).health);
         }
     }
-    @Override
-    public String getInfo() {
-        return String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥ %.1f\t☠%d\t⏭ %d\t\t", attack, defense, health, damage[0], speed);
-    }
+//    @Override
+//    public String getInfo() {
+//        return String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥ %.1f/%d\t☠%d\t⏭ %d\t\t", attack, defense, health, maxHealth, damage[0], speed);
+//    }
 }
 
