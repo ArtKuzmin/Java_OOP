@@ -66,7 +66,7 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
             int targetIndex = (int) target.y;
             int hit = (int) calcDamage(target, party.get(targetIndex));
             if (shots > 0) {
-                if (party.get(targetIndex).health > calcDamage(target, party.get(targetIndex)))
+                if (party.get(targetIndex).health > hit)
                     party.get(targetIndex).health = party.get(targetIndex).health - hit;
                 else {
                     party.get(targetIndex).health = 0;
