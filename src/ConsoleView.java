@@ -123,7 +123,7 @@ public class ConsoleView {
             System.out.print(AnsiColors.ANSI_BLUE +
                     String.join("", Collections.nCopies(20, formatDiv(" "))) + "Blue Team" + AnsiColors.ANSI_RESET);
             System.out.println(AnsiColors.ANSI_GREEN +
-                    String.join("", Collections.nCopies(40, formatDiv(" "))) + "Green Team" + AnsiColors.ANSI_RESET);
+                    String.join("", Collections.nCopies(60, formatDiv(" "))) + "Green Team" + AnsiColors.ANSI_RESET);
         }
 
         System.out.println(ConsoleView.top10);

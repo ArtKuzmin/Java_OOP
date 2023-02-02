@@ -60,6 +60,9 @@ public abstract class CloseRangeUnit extends DefaultHero implements Behavior {
         else {
             Vector2 target = findTarget(party);
             int targetIndex = (int) target.y;
+            if(targetIndex == -1)
+                System.out.println("No target!");
+            else{
             int hit = calcDamage(party.get(targetIndex));
             if (target.x > 1) {
                 takeStep(party.get(targetIndex));
@@ -72,10 +75,9 @@ public abstract class CloseRangeUnit extends DefaultHero implements Behavior {
                 } else {
                     party.get(targetIndex).health = 0;
                     party.get(targetIndex).isDead = true;
-                    System.out.println(getName() + " " + name + " killed " + party.get(targetIndex).getName() +
-                            " " + party.get(targetIndex).name + " and inflict " + hit + " damage!");
+                    System.out.println(getName() + " " + name + " killed " + party.get(targetIndex).getName());
                 }
             }
-        }
+        }}
     }
 }

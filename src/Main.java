@@ -64,26 +64,44 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+
             ConsoleView.view();
-            System.out.println("Monk Side's turn:");
+            boolean win = checkForWin(HeroTeam.monkTeam);
+            if (win) {
+//                ConsoleView.view();
+                System.out.println("Wizard Team won!");
+                break;
+            }
+            System.out.println("Wizard Side's turn:");
             HeroTeam.wizardTeam.forEach(n -> n.step(HeroTeam.monkTeam));
             System.out.println();
-            System.out.println("Wizard Side's turn:");
+
+            win = checkForWin(HeroTeam.wizardTeam);
+            if (win) {
+//                ConsoleView.view();
+                System.out.println("Monk Team won!");
+                break;
+            }
+            System.out.println("Monk Side's turn:");
             HeroTeam.monkTeam.forEach(n -> n.step(HeroTeam.wizardTeam));
             scanner.nextLine();
 
-//            ConsoleView.view();
-//            System.out.println("Press ENTER");
-//            scanner.nextLine();
-//            gameStep();
-////            if(HeroTeam.deadTeam(HeroTeam.monkTeam) || HeroTeam.deadTeam(HeroTeam.wizardTeam))
-////            {
-////                ConsoleView.view();
-////                System.out.println("End");
-////                break;
-////            }
         }
 
+    }
+
+    static boolean checkForWin(ArrayList<DefaultHero> party) {
+        boolean win = false;
+        int counter = 0;
+        for (DefaultHero hero : party) {
+            if (hero.isDead()) {
+                counter++;
+            }
+        }
+        if (counter == party.size()) {
+            return win = true;
+        } else
+            return win = false;
     }
 
     public static void gameStep() {
