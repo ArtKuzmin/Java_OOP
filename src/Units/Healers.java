@@ -35,8 +35,8 @@ public abstract class Healers extends DefaultHero implements Behavior {
                 if (sortedParty.get(0).health - damage[0] <= sortedParty.get(0).maxHealth) {
                     sortedParty.get(0).health -= damage[0];
                 } else sortedParty.get(0).health = sortedParty.get(0).maxHealth;
-                System.out.println(String.valueOf(sortedParty.get(0).getClass()).replace("class Units.", "") +
-                        " " + sortedParty.get(0).name + " is cured by " + name + ", health increased by " +
+                System.out.println(sortedParty.get(0).getName() +
+                        " " + sortedParty.get(0).name + " is cured by " + getName() + " " +name + ", health increased by " +
                         Math.abs(damage[0]) + " to " + sortedParty.get(0).health);
             }
         }

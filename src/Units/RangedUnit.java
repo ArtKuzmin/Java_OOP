@@ -16,7 +16,7 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
         return super.toString() + ", shots = " + shots;
     }
 
-    @Override
+
     public Vector2 findTarget(ArrayList<DefaultHero> party) {
         float minDistance = (float) (party.size() * 1.5);
         float index = -1;
@@ -73,7 +73,7 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
                     party.get(targetIndex).isDead = true;
                 }
                 if (flag) {
-                    System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + hit + " damage! Ammo delivered by peasant");
+                    System.out.println(getName() + " " + name + " fired at " + party.get(targetIndex).getName() + " " + party.get(targetIndex).name + " and inflict " + hit + " damage! Ammo delivered by peasant");
                 } else
                     System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + hit + " damage! " + --shots + " shots remains");
             } else System.out.println("No ammo, can't shoot!");

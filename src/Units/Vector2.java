@@ -18,16 +18,10 @@ public class Vector2 {
         return (float) Math.sqrt(dX * dX + dY * dY);
     }
 
-    public Vector2 chooseDirection(DefaultHero hero) {
-        float dX = hero.position.x - this.x;
-        float dY = hero.position.y - this.y;
-        return new Vector2(dX, dY);
-    }
 
-    public void takeStep(DefaultHero hero) {
-        Vector2 enemy = chooseDirection(hero);
-        if (enemy.x > 0 && enemy.y > 0) {
-            this.x++;
-        }
+
+    @Override
+    public String toString() {
+        return "x = " + x + ", y = " + y + '}';
     }
 }
