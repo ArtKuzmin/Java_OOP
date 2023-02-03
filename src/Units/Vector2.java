@@ -17,11 +17,5 @@ public class Vector2 {
         float dY = hero.position.y - this.y;
         return (float) Math.sqrt(dX * dX + dY * dY);
     }
-
-
-
-    @Override
-    public String toString() {
-        return "x = " + x + ", y = " + y + '}';
-    }
 }
+

@@ -31,10 +31,10 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
 
     boolean checkForPeasant() {
         boolean flag = false;
-        for (int i = 0; i < side.size(); i++) {
-            if (side.get(i) instanceof Peasant) {
-                if (((Peasant) side.get(i)).supply) {
-                    ((Peasant) side.get(i)).supply = false;
+        for (DefaultHero defaultHero : side) {
+            if (defaultHero.getName().equals("Peasant")) {
+                if (((Peasant) defaultHero).supply) {
+                    ((Peasant) defaultHero).supply = false;
                     flag = true;
                     break;
                 }
@@ -43,8 +43,6 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
         return flag;
     }
 
-    //т.к. мы пишем все-таки не игру, то не стал сильно заморачиваться с этим методом. С одной стороны он учиывает и соотношение атаки и защиты персонажей
-    //а так же расстояние между ними, но т.к. разница между макс и мик уроном мала, то и соответственно смысла в этом рассчете немного)
     float calcDamage(Vector2 target, DefaultHero hero) {
         float dealtDamage;
         if (target.x < side.size() * 0.4)
@@ -73,10 +71,14 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
                     party.get(targetIndex).isDead = true;
                 }
                 if (flag) {
-                    System.out.println(getName() + " " + name + " fired at " + party.get(targetIndex).getName() + " " + party.get(targetIndex).name + " and inflict " + hit + " damage! Ammo delivered by peasant");
+                    System.out.println(getName() + " " + name + " fired at " +
+                            party.get(targetIndex).getName() + " " + party.get(targetIndex).name +
+                            " and inflict " + hit + " damage! Ammo delivered by peasant");
                 } else
-                    System.out.println(name + " fired at " + party.get(targetIndex).name + " and inflict " + hit + " damage! " + --shots + " shots remains");
-            } else System.out.println("No ammo, can't shoot!");
+                    System.out.println(getName() + " " + name + " fired at " + party.get(targetIndex).name +
+                            " and inflict " + hit + " damage! " + --shots + " shots remains");
+            } else
+                System.out.println("No ammo, can't shoot!");
         }
     }
 }

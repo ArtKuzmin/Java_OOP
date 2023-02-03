@@ -12,7 +12,6 @@ public abstract class DefaultHero implements Behavior {
     protected Vector2 position;
     boolean isDead;
 
-
     public boolean isDead() {
         return isDead;
     }
@@ -20,12 +19,6 @@ public abstract class DefaultHero implements Behavior {
     public Vector2 getPosition() {
         return position;
     }
-
-//    @Override
-//    public Vector2 findTarget(ArrayList<DefaultHero> party) {
-//        return new Vector2(1, 1);
-//    }
-
 
     public String getName() {
         return String.valueOf(getClass()).replace("class Units.", "");
@@ -58,7 +51,7 @@ public abstract class DefaultHero implements Behavior {
 
     @Override
     public String getInfo() {
-        return String.format("%s\t%s\t ⚔ %d\t\uD83D\uDEE1 %d\t♥ %d/%d\t☠ %d\t⏭ %d\t\t",
+        return String.format("%s\t%s\t ⚔ %d\t\uD83D\uDEE1 %d\t♥ %d/%d\t☠ %d\t⏭ %d\t\t\t",
                 getName(), name, attack, defense, (int) health, maxHealth, damage[0], speed);
     }
 

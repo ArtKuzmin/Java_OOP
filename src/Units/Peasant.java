@@ -21,7 +21,7 @@ public class Peasant extends DefaultHero {
         if (isDead) System.out.println("Unit is dead");
         else {
             this.supply = true;
-            System.out.println("Peasant rested and ready to supply");
+            System.out.println(getName() + " " + name + " rested and ready to supply");
         }
     }
 }
