@@ -57,7 +57,7 @@ public abstract class DefaultHero implements Behavior {
 
     @Override
     public void step(ArrayList<DefaultHero> party) {
-        if (isDead) System.out.println("Unit is dead");
+        if (isDead) System.out.println(getName() + " " + name + " is dead");
         else System.out.println("This unit does nothing so far");
     }
 }

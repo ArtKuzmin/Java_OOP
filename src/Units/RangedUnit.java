@@ -56,7 +56,7 @@ public abstract class RangedUnit extends DefaultHero implements Behavior {
     @Override
     public void step(ArrayList<DefaultHero> party) {
         Vector2 target = findTarget(party);
-        if (isDead) System.out.println("Unit is dead");
+        if (isDead) System.out.println(getName() + " " + name + " is dead");
         else if (target.y == -1)
             System.out.println("Everyone is dead");
         else {
